@@ -1,0 +1,17 @@
+{
+	"name":  "Wheel scroll for linux",
+	"version": "1.0",
+	"manifest_version": 3,
+	"action": {
+		"default_title": "Wheel scroll for linux"
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://*/*",
+				"http://*/*"
+			],
+			"js": ["wheel-scroll.js"]
+		}
+	]
+}
