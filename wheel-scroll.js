@@ -15,7 +15,7 @@ function wheelClickListener(event) {
 	wheelY = event.clientY;
 
 	if (isWheelScroll) {
-		document.documentElement.style.cursor = 'url("http://drive.google.com/uc?export=view&id=14L7HHuCpAVoHPTmsTZdLNNl1CiNfB9ID"), pointer';
+		document.documentElement.style.cursor = 'url("http://drive.google.com/uc?export=view&id=14L7HHuCpAVoHPTmsTZdLNNl1CiNfB9ID"), crosshair';
 		window.onmousemove = mouseMoveListener;
 		window.onscroll = scrollPage;
 	} else {
