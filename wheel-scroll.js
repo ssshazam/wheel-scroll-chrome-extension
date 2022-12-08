@@ -8,27 +8,35 @@ let slowdown = 5;
 window.addEventListener('mousedown', wheelClickListener);
 
 function wheelClickListener(event) {
+	if (isWheelScroll) return exitWheelScroll();
+
 	if (event.button !== 1) return;
 
 	for (let i = 0; i < event.path.length; ++i) {
 		if (event.path[i].tagName === 'A') return;
 	}
 
-	isWheelScroll = !isWheelScroll;
+	launchWheelScroll();
+}
+
+function launchWheelScroll() {
+	isWheelScroll = true;
+
 	wheelX = event.clientX;
 	wheelY = event.clientY;
 
-	if (isWheelScroll) {
-		createBlockContentDiv();
-		document.documentElement.style.cursor = 'url("http://drive.google.com/uc?export=view&id=14L7HHuCpAVoHPTmsTZdLNNl1CiNfB9ID"), crosshair';
-		window.onmousemove = mouseMoveListener;
-		window.onscroll = scrollPage;
-	} else {
-		removeBlockContentDiv();
-		document.documentElement.style.cursor = 'default';
-		window.onmousemove = '';
-		window.onscroll = '';
-	}
+	createBlockContentDiv();
+	document.documentElement.style.cursor = 'url("http://drive.google.com/uc?export=view&id=14L7HHuCpAVoHPTmsTZdLNNl1CiNfB9ID"), crosshair';
+	window.onmousemove = mouseMoveListener;
+	window.onscroll = scrollPage;
+}
+
+function exitWheelScroll() {
+	isWheelScroll = false;
+	removeBlockContentDiv();
+	document.documentElement.style.cursor = 'default';
+	window.onmousemove = '';
+	window.onscroll = '';
 }
 
 function mouseMoveListener(event) {
