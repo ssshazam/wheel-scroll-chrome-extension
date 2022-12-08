@@ -10,6 +10,10 @@ window.addEventListener('mousedown', wheelClickListener);
 function wheelClickListener(event) {
 	if (event.button !== 1) return;
 
+	for (let i = 0; i < event.path.length; ++i) {
+		if (event.path[i].tagName === 'A') return;
+	}
+
 	isWheelScroll = !isWheelScroll;
 	wheelX = event.clientX;
 	wheelY = event.clientY;
