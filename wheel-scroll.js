@@ -19,10 +19,12 @@ function wheelClickListener(event) {
 	wheelY = event.clientY;
 
 	if (isWheelScroll) {
+		createBlockContentDiv();
 		document.documentElement.style.cursor = 'url("http://drive.google.com/uc?export=view&id=14L7HHuCpAVoHPTmsTZdLNNl1CiNfB9ID"), crosshair';
 		window.onmousemove = mouseMoveListener;
 		window.onscroll = scrollPage;
 	} else {
+		removeBlockContentDiv();
 		document.documentElement.style.cursor = 'default';
 		window.onmousemove = '';
 		window.onscroll = '';
@@ -59,3 +61,18 @@ function scrollTriggerX() {
 	window.scrollBy(-1, 0);
 }
 
+function createBlockContentDiv() {
+	let blockContentDiv = document.createElement("div");
+	blockContentDiv.style.width = "100%";
+	blockContentDiv.style.height = "100%";
+	blockContentDiv.style.zIndex = 2147483647;
+	blockContentDiv.style.position = "fixed";
+	blockContentDiv.style.top = 0;
+	blockContentDiv.setAttribute('id', 'wheel-scroll-block-page-content');
+	document.body.appendChild(blockContentDiv);
+}
+
+function removeBlockContentDiv() {
+	var blockContentDiv = document.getElementById("wheel-scroll-block-page-content");
+	document.body.removeChild(blockContentDiv);
+}
